@@ -1,12 +1,13 @@
 //import logo from './logo.svg';
-//import './App.css';
-import NavBar from './components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './components/Navbar/Index';
+import ItemLIstContainer from './components/container/ItemLIstContainer';
 
 const App = () => {
   return(
     <>
       <NavBar />
+      <ItemLIstContainer greeting={'Bienvenido!! Toda tu ropa deportiva la encontras aca.'} />
     </>
   )
 }

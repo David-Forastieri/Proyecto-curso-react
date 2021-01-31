@@ -1,0 +1,14 @@
+
+nav{
+    background-color: rgb(198, 199, 199);
+}
+li a{
+    color: #000;
+    margin: 0 15px ;
+}
+li a:hover{
+    font-weight: bold;
+    color: black;
+}
+
+
