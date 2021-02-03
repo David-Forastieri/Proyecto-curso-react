@@ -18,6 +18,13 @@ const ItemCount = ({stock, initial}) => {
             }
         }
 
+        const onAdd = () =>{
+            alert ('Se agregaron ' + (contador) + ' productos a tu carrito de compras');
+            if (true){
+               setContador((initial));
+            };
+        }
+
     return (
         <>
             <div className='row contador'>
@@ -26,6 +33,9 @@ const ItemCount = ({stock, initial}) => {
                 <div className='number'><p>{contador}</p></div>
 
                 <button onClick = {Agregar} > + </button>
+            </div>
+            <div className='row justify-content-center'>
+                <button onClick= {onAdd} >Agregar al carrito</button>
             </div>
         </>
     )
