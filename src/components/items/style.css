@@ -1,0 +1,12 @@
+.card {
+  background-color: rgb(174, 201, 243);
+  border: 4px double #000;
+  margin: 50px;
+}
+
+.imgProduct {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #000;
+  border-radius: 5px;
+}

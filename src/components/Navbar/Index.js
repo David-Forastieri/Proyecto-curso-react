@@ -7,10 +7,10 @@ import './style.css';
 const NavBar = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg">
+       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <h2 className="logo">La Pelota No Se Mancha</h2>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
