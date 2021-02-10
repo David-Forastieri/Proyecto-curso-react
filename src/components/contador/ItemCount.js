@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react';
-import './style.css';
+import './contador.css';
 
 const ItemCount = ({stock, initial, onAdd}) => {
 
@@ -20,6 +20,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
         
     return (
         <>
+          <div className='container'>
             <div className='row contador'>
                 <button onClick = {Restar} > - </button>
 
@@ -30,6 +31,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
             <div className='row justify-content-center'>
                 <button onClick={()=> {onAdd(contador)}} >Agregar al carrito</button>
             </div>
+          </div>
         </>
     )
 }

@@ -3,10 +3,24 @@
   border: 4px double #000;
   margin: 50px;
 }
+h2 {
+  text-align: center;
+}
 
 .imgProduct {
   display: flex;
   justify-content: center;
   border: 1px solid #000;
   border-radius: 5px;
+}
+.imgProductDetail {
+  display: flex;
+  justify-content: space-around;
+  width: 500px;
+  height: 500px;
+}
+
+.item {
+  display: inline;
+  text-decoration: none;
 }
