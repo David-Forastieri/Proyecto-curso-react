@@ -15,25 +15,17 @@ const Categorias = () => {
     const {idTipo} = useParams();
     console.log(idTipo);
 
-      useEffect(() => {  
-        setLoading(true);        
+      useEffect(() => {          
         const category = new Promise ((resolve, reject) => {
-        setTimeout( () =>
-          resolve (ProductList), 1000);
+          setTimeout( () => resolve (ProductList), 1000);     
           });
+          setLoading(true);
              
-
-            category.then((e) =>{
-              let productoCategory = (e).filter(element => {
-                if(element.categoria === idTipo){
-                    return element
-                  };
-                    setCategoryProduc(element)
-                    setLoading(false)}
-                )
-                console.log(productoCategory);
-                console.log(setCategoryProduc)
-             });
+          category.then((e) =>{
+            let productoCategory = (e).filter(element => element.categoria === idTipo); 
+              setCategoryProduc(productoCategory)
+              setLoading(false)             
+            });
 
         }, [idTipo, setCategoryProduc]);
 
@@ -44,7 +36,6 @@ const Categorias = () => {
 
     return (
         <> 
-         
           <ItemList productos={categoryProduc} />
         </>
     )

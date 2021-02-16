@@ -10,8 +10,6 @@ import './container.css';
 
 const ItemLIstContainer = ({greeting}) => {
 
-   
-
         const [itemProducto, setItemProducto] = useState ([]);
         const [loading, setLoading] = useState (false);
 

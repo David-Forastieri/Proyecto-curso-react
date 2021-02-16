@@ -21,36 +21,28 @@ const ItemDatailContainer = () => {
     console.log(id);
 
     useEffect (() =>{
-        const detalleProducto = new Promise ((resolve, reject) => {
-            setTimeout(() => resolve (ProductList), 1000); setLoading(true);
+      const detalleProducto = new Promise ((resolve, reject) => {
+        setTimeout(() => resolve (ProductList), 1000);
         });
-           
+        setLoading(true);
 
         detalleProducto.then((e) =>{
-           let productoDetalle= (e).find(element => {
-              if(element.id.toString() === id){
-                  return element
-              };
-               setDetalle(element)
-               setLoading(false)}
-           )
-           console.log(productoDetalle)
-    });
+          let productoDetalle= (e).find(element => element.id.toString() === id);   
+            setDetalle(productoDetalle)
+            setLoading(false)
+        });
 
-
-        }, [id, setDetalle] );
-    
+      }, [id, setDetalle] );
         
-    if(loading){
-       return <div className='spinner'><img src={spinner} /></div>
-    }
+      if(loading){
+        return <div className='spinner'><img src={spinner} /></div>
+      }
 
     return (
         <>
             <div className='card'>
                <ItemDetail detalle={detalle} /> 
                <ItemCount stock={detalle.stock} initial={1} onAdd={onAdd} />  
-               <h1>esta es la {id}</h1>
             </div>
         </>
     )

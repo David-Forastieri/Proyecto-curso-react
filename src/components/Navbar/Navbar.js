@@ -33,7 +33,9 @@ const NavBar = () => {
                     <li className="dropdown-item">Pantalones</li>
                   </ul>
               </li>
-              <li className="nav-item"><NavLink to={`/categorias/${'accesorios'}`} activeClassName='seleccionado'> Accesorios </NavLink></li>
+              <li className="nav-item">
+                <NavLink to={`/categorias/${'accesorios'}`} activeClassName='seleccionado'> Accesorios </NavLink>
+              </li>
             </ul>
           </div>
         </div>
