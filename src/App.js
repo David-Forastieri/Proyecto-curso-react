@@ -1,18 +1,35 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from './components/Navbar/Index';
+import Categorias from './containers/Categorias';
 import ItemDatailContainer from './containers/ItemDatailContainer';
-//import ItemLIstContainer from './containers/ItemLIstContainer';
+import ItemLIstContainer from './containers/ItemLIstContainer';
 
 
 
 const App = () => {
 
   return(
-    <>
+    <BrowserRouter>
       <NavBar />
-      {/*<ItemLIstContainer greeting={'Bienvenido!! Toda tu ropa deportiva la encontras aca.'} /> */}
-      <ItemDatailContainer />
-    </>
+
+      <Switch>
+
+        <Route exact path='/'>
+          <ItemLIstContainer greeting={'Bienvenido!! Toda tu ropa deportiva la encontras aca.'} />
+        </Route>
+
+        <Route path='/detalle/:id'>
+          <ItemDatailContainer />
+        </Route>
+
+        <Route path='/categorias/:idTipo'>
+          <Categorias />
+        </Route>
+
+      </Switch>
+
+    </BrowserRouter>
   )
 }
 

@@ -1,20 +1,23 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Item from './Item';
 import './item.css';
 
 const ItemList = ({productos}) => {
     return (
       <>
-        <ul>
-          {productos.map ((elemento, index) =>{
-            return(
-              <li className='row item'>
-                <Item key={index} producto={elemento} />            
-              </li>
-              ) } )
-            }    
-        </ul>
+          <ul>
+            {productos.map (elemento =>{
+              return(
+                <li key={elemento.id} className='item'>
+                  <Link to={`/detalle/${elemento.id}`}>
+                    <Item  producto={elemento} />            
+                  </Link>
+                </li>
+                ) } )
+              }    
+          </ul>
       </>
     )
 }

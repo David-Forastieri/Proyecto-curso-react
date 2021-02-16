@@ -1,10 +1,9 @@
 
 import React from 'react';
-import ItemCount from '../contador/ItemCount';
 import './item.css';
 
 const ItemDetail = ({detalle, onAdd}) => {
-  console.log(detalle)
+
     return (
         <>
           <div className='container'>
@@ -16,7 +15,6 @@ const ItemDetail = ({detalle, onAdd}) => {
                 <p>{detalle.description}</p>
                 <p>stock:{detalle.stock}unds.</p>
                 <p>Envios a todo el pais.</p>
-                <ItemCount stock={detalle.stock} initial={1} onAdd={onAdd}/>
               </div>
             </div>
           </div>          

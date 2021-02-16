@@ -19,7 +19,7 @@ const ItemLIstContainer = ({greeting}) => {
           setLoading(true);        
           const items = new Promise ((resolve, reject) => {
               setTimeout( () =>
-               resolve (ProductList), 5000);
+               resolve (ProductList), 1000);
             });
              
             items.then((e) => {setItemProducto (e);

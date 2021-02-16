@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import CartWidget from './CartWidget';
 import './style.css';
 
@@ -9,7 +10,7 @@ const NavBar = () => {
     <>
        <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <h2 className="logo">La Pelota No Se Mancha</h2>
+         <Link to={'/'}><h2 className="logo">La Pelota No Se Mancha</h2></Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -17,26 +18,22 @@ const NavBar = () => {
           <CartWidget />
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Femenino</a>
+              <NavLink to={`/categorias/${'fem'}`} activeClassName='seleccionado'> Femenino </NavLink>
                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a className="dropdown-item" href="#">Calzado</a></li>
-                    <li><a className="dropdown-item" href="#">Camisetas</a></li>
-                    <li><a className="dropdown-item" href="#">Pantalones</a></li>
+                    <li className="dropdown-item">Calzado</li>
+                    <li className="dropdown-item">Camisetas</li>
+                    <li className="dropdown-item">Pantalones</li>
                   </ul>
               </li>
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Masculino</a>
+                <NavLink to={`/categorias/${'masc'}`} activeClassName='seleccionado'> Masculino </NavLink>
                   <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a className="dropdown-item" href="#">Calzado</a></li>
-                    <li><a className="dropdown-item" href="#">Camisetas</a></li>
-                    <li><a className="dropdown-item" href="#">Pantalones</a></li>
+                    <li className="dropdown-item">Calzado</li>
+                    <li className="dropdown-item">Camisetas</li>
+                    <li className="dropdown-item">Pantalones</li>
                   </ul>
               </li>
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Accesorios</a>
-              </li>
+              <li className="nav-item"><NavLink to={`/categorias/${'accesorios'}`} activeClassName='seleccionado'> Accesorios </NavLink></li>
             </ul>
           </div>
         </div>
