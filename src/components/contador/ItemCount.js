@@ -1,32 +1,21 @@
 
-import React, {useState} from 'react';
+import React from 'react';
 import './contador.css';
 
-const ItemCount = ({stock, initial, onAdd}) => {
-
-        const [contador, setContador] = useState (initial);
-
-        const Agregar = () =>{
-            if(contador < stock ) {
-                setContador(contador +1);
-            }
-        }
-        
-        const Restar = () =>{
-            if(contador > 1 ) {
-                setContador(contador -1);
-            }
-        }
-        
+const ItemCount = ({contador, restar, agregar, onAdd}) => { 
+          
     return (
         <>
           <div className='container'>
             <div className='row contador'>
-                <button onClick = {Restar} > - </button>
+                <button onClick ={()=> {restar()}} > - </button>
 
                 <div className='number'><p>{contador}</p></div>
 
-                <button onClick = {Agregar} > + </button>
+ 
+                <button onClick ={()=> {agregar()}} > + </button>
+                
+
             </div>
             <div className='row justify-content-center'>
                 <button onClick={()=> {onAdd(contador)}} >Agregar al carrito</button>

@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Cart from './components/cart/Cart';
 import NavBar from './components/Navbar/Navbar';
 import Categorias from './containers/Categorias';
 import ItemDatailContainer from './containers/ItemDatailContainer';
@@ -27,9 +28,16 @@ const App = () => {
           <Categorias />
         </Route>
 
+        <Route path='/cart'>
+          <Cart />
+        </Route>
+
+        <Route path ='*' children={<h1>Not found</h1>} />
+
       </Switch>
 
     </BrowserRouter>
+
   )
 }
 

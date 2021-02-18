@@ -1,7 +1,13 @@
+.container-mark {
+  margin-top: 30px;
+}
 .card {
   background-color: rgb(174, 201, 243);
   border: 4px double #000;
-  margin: 50px;
+  margin: 6px;
+}
+.card-list {
+  height: 370px;
 }
 h2 {
   text-align: center;
@@ -19,8 +25,14 @@ h2 {
   width: 500px;
   height: 500px;
 }
-
 .item {
-  display: inline;
+  border: 4px double #000;
+}
+ul {
+  list-style: none;
+  display: inline-block;
+}
+ul a:hover {
   text-decoration: none;
+  font-weight: normal;
 }

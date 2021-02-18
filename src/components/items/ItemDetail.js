@@ -2,11 +2,11 @@
 import React from 'react';
 import './item.css';
 
-const ItemDetail = ({detalle, onAdd}) => {
+const ItemDetail = ({detalle}) => {
 
     return (
         <>
-          <div className='container'>
+          <div className='container container-mark'>
             <div className='card'>
               <h2>{detalle.name}</h2>
               <div className='row justify-content-center cols-lg-12 card-body'>
