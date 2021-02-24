@@ -1,15 +1,19 @@
 
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import { Link, useParams } from 'react-router-dom';
 import ItemCount from '../components/contador/ItemCount';
 import ItemDetail from '../components/items/ItemDetail';
 import ProductList from '../components/ProductsList/ProductList';
+import { CartContext } from '../context/CartContext';
 import spinner from '../spinner.png';
 import './container.css';
 
 const ItemDatailContainer = () => {
 
   const [contador, setContador] = useState (1);
+  const [detalle, setDetalle] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [carrito, setCarrito]= useState (false)
 
   const agregar = () =>{
     if(contador < detalle.stock ) {
@@ -26,17 +30,17 @@ const ItemDatailContainer = () => {
   }
   
     const onAdd = () =>{
-       alert ('Se agregaron ' + (contador) + ' productos a tu carrito de compras');
-       setCarrito(true);
+      AddItem( {id:(id), item:(detalle), quantity:(contador)} );
+      setCarrito(true);
     };
     
-    const [detalle, setDetalle] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [carrito, setCarrito]= useState (false)
+    const {AddItem} = useContext (CartContext);
+    //console.log(cart)
+
 
     
     const {id} = useParams();
-    console.log(id);
+    //console.log(id);
 
     useEffect (() =>{
       const detalleProducto = new Promise ((resolve, reject) => {

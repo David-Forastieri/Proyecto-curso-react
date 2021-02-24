@@ -1,43 +1,47 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Cart from './components/cart/Cart';
+import Cart from './containers/Cart';
 import NavBar from './components/Navbar/Navbar';
 import Categorias from './containers/Categorias';
 import ItemDatailContainer from './containers/ItemDatailContainer';
 import ItemLIstContainer from './containers/ItemLIstContainer';
+import {CartProvider} from './context/CartContext';
 
 
 
 const App = () => {
 
   return(
-    <BrowserRouter>
-      <NavBar />
+    <CartProvider>
 
-      <Switch>
+      <BrowserRouter>
+        <NavBar />
 
-        <Route exact path='/'>
-          <ItemLIstContainer greeting={'Bienvenido!! Toda tu ropa deportiva la encontras aca.'} />
-        </Route>
+        <Switch>
 
-        <Route path='/detalle/:id'>
-          <ItemDatailContainer />
-        </Route>
+          <Route exact path='/'>
+            <ItemLIstContainer greeting={'Bienvenido!! Toda tu ropa deportiva la encontras aca.'} />
+          </Route>
 
-        <Route path='/categorias/:idTipo'>
-          <Categorias />
-        </Route>
+          <Route path='/detalle/:id'>
+            <ItemDatailContainer />
+          </Route>
 
-        <Route path='/cart'>
-          <Cart />
-        </Route>
+          <Route path='/categorias/:idTipo'>
+            <Categorias />
+          </Route>
 
-        <Route path ='*' children={<h1>Not found</h1>} />
+          <Route path='/cart'>
+            <Cart />
+          </Route>
 
-      </Switch>
+          <Route path ='*' children={<h1>Not found</h1>} />
 
-    </BrowserRouter>
+        </Switch>
 
+      </BrowserRouter>
+
+    </CartProvider>
   )
 }
 
