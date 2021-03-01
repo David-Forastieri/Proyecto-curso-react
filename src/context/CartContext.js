@@ -6,23 +6,27 @@ export const CartProvider = ({children}) => {
     const [ cart, setCart ] = useState ([])
 
   const AddItem = (product) =>{
-    if (cart.indexOf(product.id) === -1 ){
-
+    if(IsInCart(product.id) === -1){
       setCart([...cart, {product}])
-    }else{
-      alert('producto en lista')
     }
     
   }    
 
-  
-  
-   // console.log(setCart);
-   console.log(cart);
-   console.log();
+ // FUNCION PARA DETECTAR SI U ITEM YA ESTA INGRESADO EN EL CARRITO DE COMPRAS
+  const IsInCart = (id) =>{
+    console.log(cart.findIndex(e => e.id === id))   
+      return cart.findIndex(e => e.product.id === id) 
+    }
+   
+ // FUNCION PARA REMOVER UN SOLO ITEM   
+  const RemoveItem = (id) =>{
+    let list = cart.filter(product => product.id !== id )
+   setCart(list)
+
+}
 
 
-    return  <CartContext.Provider value={{cart, AddItem}}>
+    return  <CartContext.Provider value={{cart, AddItem, RemoveItem}}>
               {children}
             </CartContext.Provider>
 }
