@@ -1,11 +1,15 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { CartContext } from '../../context/CartContext';
 import CartWidget from './CartWidget';
 import './style.css';
 
 
 const NavBar = () => {
+
+  const {cart} = useContext (CartContext)
+
   return (
     <>
        <nav className="navbar navbar-expand-lg">
@@ -15,7 +19,7 @@ const NavBar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <CartWidget />
+          { cart.length !== 0 ? <CartWidget /> : null}
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item dropdown">
               <NavLink to={`/categorias/${'fem'}`} activeClassName='seleccionado'> Femenino </NavLink>

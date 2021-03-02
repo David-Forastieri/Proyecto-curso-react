@@ -35,12 +35,8 @@ const ItemDatailContainer = () => {
     };
     
     const {AddItem} = useContext (CartContext);
-    //console.log(cart)
-
-
     
     const {id} = useParams();
-    //console.log(id);
 
     useEffect (() =>{
       const detalleProducto = new Promise ((resolve, reject) => {
