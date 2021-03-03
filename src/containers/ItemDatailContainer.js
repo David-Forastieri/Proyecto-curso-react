@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext} from 'react'
 import { Link, useParams } from 'react-router-dom';
 import ItemCount from '../components/contador/ItemCount';
 import ItemDetail from '../components/items/ItemDetail';
-import ProductList from '../components/ProductsList/ProductList';
+import { getFirestore } from '../firebase';
 import { CartContext } from '../context/CartContext';
 import spinner from '../spinner.png';
 import './container.css';
@@ -37,20 +37,18 @@ const ItemDatailContainer = () => {
     const {AddItem} = useContext (CartContext);
     
     const {id} = useParams();
-
-    useEffect (() =>{
-      const detalleProducto = new Promise ((resolve, reject) => {
-        setTimeout(() => resolve (ProductList), 1000);
-        });
-        setLoading(true);
-
-        detalleProducto.then((e) =>{
-          let productoDetalle= (e).find(element => element.id.toString() === id);   
-            setDetalle(productoDetalle)
-            setLoading(false)
-        });
-
-      }, [id, setDetalle] );
+    
+    useEffect(() => {
+      setLoading(true);
+      
+      const db = getFirestore()
+      const itemCollection = db.collection('PRODUCTOS')
+      const item = itemCollection.doc(id)
+      item.get().then((value) =>{
+        setDetalle(value.data())  
+        setLoading(false)
+       });
+     }, [id, setDetalle] );
         
       if(loading){
         return <div className='spinner'><img src={spinner} /></div>

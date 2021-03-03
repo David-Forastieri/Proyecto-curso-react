@@ -1,7 +1,7 @@
 
 import React, {useState, useEffect} from 'react';
 import ItemList from '../components/items/ItemList';
-import ProductList from '../components/ProductsList/ProductList';
+import { getFirestore } from '../firebase';
 import spinner from '../spinner.png';
 import './container.css';
 
@@ -13,16 +13,17 @@ const ItemLIstContainer = ({greeting}) => {
         const [itemProducto, setItemProducto] = useState ([]);
         const [loading, setLoading] = useState (false);
 
-        useEffect(() => {  
-          setLoading(true);        
-          const items = new Promise ((resolve, reject) => {
-              setTimeout( () =>
-               resolve (ProductList), 1000);
-            });
-             
-            items.then((e) => {setItemProducto (e);
-               setLoading(false)});
-        }, []);
+        useEffect(() => {
+          setLoading(true);
+          
+          const db = getFirestore()
+          const itemCollection = db.collection('PRODUCTOS')
+          itemCollection.get().then((value) =>{
+            setItemProducto(value.docs.map(e => (e.data()))) 
+            setLoading(false)
+          })
+
+        }, [])
 
         if(loading){
           return <div className='spinner'><img src={spinner} /></div>

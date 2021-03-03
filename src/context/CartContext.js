@@ -24,10 +24,8 @@ export const CartProvider = ({children}) => {
     setPriceTotal(parseInt(priceTotal + price))
     //console.log(price)
     console.log(priceTotal)
-    //console.log()
+   
     }    
-
- 
 
  // FUNCION PARA DETECTAR SI UN ITEM YA ESTA INGRESADO EN EL CARRITO DE COMPRAS
   const IsInCart = (id) =>{

@@ -8,7 +8,7 @@ const ItemDetail = ({detalle}) => {
         <>
           <div className='container container-mark'>
             <div className='card'>
-              <h2>{detalle.name}</h2>
+              <h2>{detalle.name}</h2> 
               <div className='row justify-content-center cols-lg-12 card-body'>
                 <img src={detalle.image}/>
                 <h3>${detalle.price}</h3>
