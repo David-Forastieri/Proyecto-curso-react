@@ -54,7 +54,6 @@ const ItemDatailContainer = () => {
     return <div className='spinner'><img src={spinner} /></div>
   }
 
-  console.log(detalle)
   return (
     <>
       {detalle !== undefined ?

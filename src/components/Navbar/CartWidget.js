@@ -5,15 +5,14 @@ import { CartContext } from '../../context/CartContext';
 
 const CartWidget = () => {
 
-    const {quantity} = useContext (CartContext);
+  const { quantity } = useContext(CartContext);
 
-
-    return (
-        <>
-          <div>{quantity}</div>  
-          <Link to={`/cart`}><AiOutlineShoppingCart /></Link>  
-        </>
-    )
+  return (
+    <>
+      <div>{quantity}</div>
+      <Link to={`/cart`}><AiOutlineShoppingCart /></Link>
+    </>
+  )
 }
 
 export default CartWidget

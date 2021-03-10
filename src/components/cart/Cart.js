@@ -5,8 +5,6 @@ import { getFirestore } from '../../firebase';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Button, Form, FormGroup, FormText } from 'reactstrap'
 import { FormControl, FormLabel } from 'react-bootstrap';
 
-
-
 const Cart = () => {
 
   const { cart, RemoveItem, ClearCart, priceTotal } = useContext(CartContext);

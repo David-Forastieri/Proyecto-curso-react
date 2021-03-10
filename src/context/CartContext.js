@@ -4,8 +4,7 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([])
-  const [quantity, setQuantity] = useState('')
-
+  const [quantity, setQuantity] = useState(0)
 
   const AddItem = (product) => {
     if (IsInCart(product.id) === false) {
@@ -13,8 +12,16 @@ export const CartProvider = ({ children }) => {
     } else {
       alert('producto en lista.')
     }
-    //CANTIDAD DE ITEMS EN EL CART
+    //SUMA CANTIDAD DE ITEMS EN EL CART
     setQuantity(parseInt(quantity + product.quantity))
+  }
+
+  //RESTA CANTIDAD DE ITEMS EN EL CART
+  const cambiarCart = (list) => {
+    let itemsCart = list.map(e => e.quantity)
+    setQuantity(itemsCart.reduce((a, b) => {
+      return a + b
+    }, 0))
   }
 
   // FUNCION PARA DETECTAR SI UN ITEM YA ESTA INGRESADO EN EL CARRITO DE COMPRAS
@@ -25,16 +32,17 @@ export const CartProvider = ({ children }) => {
   // FUNCION PARA REMOVER UN SOLO ITEM   
   const RemoveItem = (id) => {
     let list = cart.filter(product => product.id !== id)
-    console.log(list)
     setCart(list)
+    cambiarCart(list)
   }
 
   //ELIMINA TODOS LOS PRODUCTOS DEL CART 
   const ClearCart = () => {
     setCart([])
-    setQuantity('')
+    setQuantity(0)
   }
 
+  //FUNCION QUE DEVUELVE EL PRECIO TOTAL DE PRODUCTOS EN EL CART
   const priceTotal = cart.reduce((a, b) => {
     return a + (b.quantity * b.item.price)
   }, 0)
