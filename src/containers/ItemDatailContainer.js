@@ -53,14 +53,19 @@ const ItemDatailContainer = () => {
   if (loading) {
     return <div className='spinner'><img src={spinner} /></div>
   }
+
+  console.log(detalle)
   return (
     <>
-      <div className='card'>
-        <ItemDetail detalle={detalle} />
-        {carrito ? <Link to={`/cart`}><button>ir al carrito</button></Link>
-          : <ItemCount restar={restar} agregar={agregar} contador={contador} onAdd={onAdd} />
-        }
-      </div>
+      {detalle !== undefined ?
+        <div className='card'>
+          <ItemDetail detalle={detalle} />
+          {carrito ? <Link to={`/cart`}><button>ir al carrito</button></Link>
+            : <ItemCount restar={restar} agregar={agregar} contador={contador} onAdd={onAdd} />
+          }
+        </div> :
+        <h1>NO SE ENCONTRO PRODUCTO EN LISTA</h1>
+      }
     </>
   )
 

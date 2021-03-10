@@ -5,13 +5,13 @@ import NavBar from './components/Navbar/Navbar';
 import Categorias from './containers/Categorias';
 import ItemDatailContainer from './containers/ItemDatailContainer';
 import ItemLIstContainer from './containers/ItemLIstContainer';
-import {CartProvider} from './context/CartContext';
+import { CartProvider } from './context/CartContext';
 
 
 
 const App = () => {
 
-  return(
+  return (
     <CartProvider>
 
       <BrowserRouter>
@@ -35,7 +35,7 @@ const App = () => {
             <Cart />
           </Route>
 
-          <Route path ='*' children={<h1>Not found</h1>} />
+          <Route path='*' children={<h1>Not found</h1>} />
 
         </Switch>
 
