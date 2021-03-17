@@ -2,6 +2,7 @@
 import React from 'react';
 import './contador.css';
 
+
 const ItemCount = ({ contador, restar, agregar, onAdd }) => {
 
   return (
