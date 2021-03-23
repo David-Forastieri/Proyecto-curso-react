@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
 import { AiOutlineShoppingCart } from "react-icons/ai";
+
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
+
+import './style.css'
 
 const CartWidget = () => {
 
@@ -9,8 +12,10 @@ const CartWidget = () => {
 
   return (
     <>
-      <div>{quantity}</div>
-      <Link to={`/cart`}><AiOutlineShoppingCart /></Link>
+      <div className='number-cart'>{quantity}</div>
+      <div className='logo-cart'>
+        <Link to={`/cart`}><AiOutlineShoppingCart /></Link>
+      </div>
     </>
   )
 }

@@ -2,12 +2,13 @@
   margin-top: 30px;
 }
 .card {
-  background-color: rgb(174, 201, 243);
-  border: 4px double #000;
+  background-color: rgb(225, 227, 236);
+  border: 4px solid rgb(53, 197, 17);
   margin: 6px;
 }
 .card-list {
   height: 370px;
+  border: none;
 }
 h2 {
   text-align: center;
@@ -16,7 +17,7 @@ h2 {
 .imgProduct {
   display: flex;
   justify-content: center;
-  border: 1px solid #000;
+  border: 2px solid rgb(53, 197, 17);
   border-radius: 5px;
 }
 .imgProductDetail {
@@ -26,7 +27,7 @@ h2 {
   height: 500px;
 }
 .item {
-  border: 4px double #000;
+  border: 4px solid rgb(53, 197, 17);
 }
 ul {
   list-style: none;
@@ -35,4 +36,7 @@ ul {
 ul a:hover {
   text-decoration: none;
   font-weight: normal;
+}
+.btn-large {
+  width: 100%;
 }

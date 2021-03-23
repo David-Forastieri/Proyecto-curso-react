@@ -1,0 +1,15 @@
+.header {
+  background-color: rgb(233, 233, 245);
+}
+
+.header p {
+  font-family: "Righteous", cursive;
+  font-size: 60px;
+  font-style: italic;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.header .icon {
+  font-size: 25px;
+}

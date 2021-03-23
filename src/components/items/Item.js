@@ -31,7 +31,6 @@ const Item = ({ producto }) => {
     }
   }
 
-
   return (
     <>
       <div className='container row-cols-lg-10'>
@@ -43,7 +42,7 @@ const Item = ({ producto }) => {
         </div>
       </div>
       <div>
-        {carrito ? <Link to={`/cart`}><button> Ir al carrito </button></Link> :
+        {carrito ? <Link to={`/cart`}><button className='btn-large'> Ver en carrito </button></Link> :
           <ItemCount restar={restar} agregar={agregar} contador={contador} onAdd={onAdd} />
         }
       </div>

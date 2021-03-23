@@ -4,10 +4,6 @@ import Item from './Item';
 import './item.css';
 
 const ItemList = ({ productos }) => {
-
-
-
-
   return (
     <>
       <div className='container-fluid container-mark'>
@@ -15,10 +11,7 @@ const ItemList = ({ productos }) => {
           {productos.map(e => {
             return (
               <li key={e.id} className='item col-md-4'>
-
                 <Item producto={e} />
-
-
               </li>
             )
           })

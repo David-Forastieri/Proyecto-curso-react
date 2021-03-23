@@ -1,13 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Cart from './components/cart/Cart';
+import Header from './components/header/Header';
 import NavBar from './components/Navbar/Navbar';
 import Categorias from './containers/Categorias';
 import ItemDatailContainer from './containers/ItemDatailContainer';
 import ItemLIstContainer from './containers/ItemLIstContainer';
 import { CartProvider } from './context/CartContext';
-
-
 
 const App = () => {
 
@@ -15,6 +14,7 @@ const App = () => {
     <CartProvider>
 
       <BrowserRouter>
+        <Header />
         <NavBar />
 
         <Switch>

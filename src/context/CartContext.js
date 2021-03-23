@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export const CartContext = createContext();
 
@@ -6,49 +6,43 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([])
   const [quantity, setQuantity] = useState(0)
 
+  useEffect(() => {
+    if (localStorage.getItem('cart') !== null) {
+      setCart(JSON.parse(localStorage.getItem('cart')))
+      QuantityItems(JSON.parse(localStorage.getItem('cart')))
+    }
+  }, [])
+
   //FUNCION AGREGAR PRODUCTOS AL CARRITO
   const AddItem = (product) => {
     if (IsInCart(product.id) === false) {
-      setCart([...cart, product])
+      let newCart = [...cart, product]
+      setCart(newCart)
+      LocalStorage(newCart)
 
       //SUMA CANTIDAD DE ITEMS EN EL CART
       setQuantity(parseInt(quantity + product.quantity))
 
     } else {
-      Nueva(product)
+      NewQuantityProduct(product)
     }
   }
 
-  //FUNCION SI ALGUNO REPETIDO CAMBIAR CANTIDAD
-  const Nueva = (id) => {
+  //FUNCION SI EL PRODUCTO SE ENCUENTRA REPETIDO
+  const NewQuantityProduct = (id) => {
     let lista = cart.filter(product => product.id !== id.id)
-    setCart([...lista, id])
-    LocalStorage()
+    let newLista = [...lista, id]
+    setCart(newLista)
+    LocalStorage(newLista)
     cart.length === 1 ? setQuantity(id.quantity) :
-      NuevoContador()
+      QuantityItems(newLista)
   }
 
-  const NuevoContador = () => {
-    console.log(cart)
-    let itemInCart = cart.map(e => e.quantity)
-    console.log(itemInCart)
-    setQuantity(itemInCart.reduce((a, b) => {
-      return (a + b)
-    }, 0))
+  //FUNCION PARA CAMBIAR CANTIDAD DE ITEMS
+  const QuantityItems = (newLista) => {
+    let itemInCart = newLista.map(e => e)
+    setQuantity(itemInCart.reduce((a, b) => a + b.quantity, 0))
   }
-
-  // console.log(cart)
-  /* let xxx = cart.map(e => e.quantity)
-  console.log(xxx)
-  setQuantity(xxx.reduce((a, b) => a + b)) */
-
-  /* //RESTA CANTIDAD DE ITEMS EN EL CART
-  const cambiarCart = (list) => {
-    let itemsCart = list.map(e => e.quantity)
-    setQuantity(itemsCart.reduce((a, b) => {
-      return a + b
-    }, 0))
-  } */
 
   // FUNCION PARA DETECTAR SI UN ITEM YA ESTA INGRESADO EN EL CARRITO DE COMPRAS
   const IsInCart = (id) => {
@@ -59,15 +53,15 @@ export const CartProvider = ({ children }) => {
   const RemoveItem = (id) => {
     let list = cart.filter(product => product.id !== id)
     setCart(list)
-    LocalStorage()
-    NuevoContador()
-    //cambiarCart(list)
+    LocalStorage(list)
+    QuantityItems(list)
+
   }
 
   //ELIMINA TODOS LOS PRODUCTOS DEL CART 
   const ClearCart = () => {
     setCart([])
-    LocalStorage()
+    LocalStorage(null)
     setQuantity(0)
   }
 
@@ -77,11 +71,12 @@ export const CartProvider = ({ children }) => {
   }, 0)
 
   //FUNCION GUARDAR CART EN LOCAL STORAGE
-  const LocalStorage = () => {
-    localStorage.setItem('cart', JSON.stringify(cart))
+  const LocalStorage = (producto) => {
+    producto === null || producto === [] ? localStorage.clear('cart') :
+      localStorage.setItem('cart', JSON.stringify(producto))
   }
 
-  return <CartContext.Provider value={{ cart, AddItem, RemoveItem, ClearCart, quantity, priceTotal }}>
+  return <CartContext.Provider value={{ cart, setCart, AddItem, RemoveItem, ClearCart, quantity, priceTotal, LocalStorage }}>
     {children}
   </CartContext.Provider>
 }

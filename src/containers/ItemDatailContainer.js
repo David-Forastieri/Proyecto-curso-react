@@ -59,7 +59,7 @@ const ItemDatailContainer = () => {
       {detalle !== undefined ?
         <div className='card'>
           <ItemDetail detalle={detalle} />
-          {carrito ? <Link to={`/cart`}><button>ir al carrito</button></Link>
+          {carrito ? <Link to={`/cart`}><button className='btn-large'>Ver en carrito</button></Link>
             : <ItemCount restar={restar} agregar={agregar} contador={contador} onAdd={onAdd} />
           }
         </div> :
@@ -67,8 +67,6 @@ const ItemDatailContainer = () => {
       }
     </>
   )
-
-
 }
 
 export default ItemDatailContainer;
