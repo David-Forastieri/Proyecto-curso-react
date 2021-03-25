@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { Modal, ModalBody, ModalFooter, ModalHeader, Button, Form, FormGroup } from 'reactstrap'
 import { FormControl, FormLabel } from 'react-bootstrap';
 import { getFirestore } from '../firebase/index'
+import firebase from 'firebase/app'
+import '@firebase/firestore'
 import { CartContext } from '../context/CartContext';
 import { useForm } from 'react-hook-form'
 
@@ -13,11 +15,11 @@ const ModalComponent = ({ setModal, modal }) => {
 
   const OnSubmit = (data) => {
 
-    const hoy = new Date();
-    let hour = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds()
-    let fecha = hoy.getDate() + '/' + (hoy.getMonth() + 1) + '/' + hoy.getFullYear() + '-' + hour
-
-    let orders = ({ fecha: fecha, usuario: data, item: [...cart], total: priceTotal })
+    let orders = ({
+      fecha: firebase.firestore.Timestamp.fromDate(new Date()),
+      usuario: data, item: [...cart],
+      total: priceTotal
+    })
 
     const db = getFirestore()
     const InsertOrders = db.collection('ordenes')
@@ -32,7 +34,7 @@ const ModalComponent = ({ setModal, modal }) => {
   return (
     <>
       <Modal isOpen={modal}>
-        <ModalHeader closeButton>
+        <ModalHeader >
           <h2>Complete los campos para realizar su pedido</h2>
         </ModalHeader>
         <Form onSubmit={handleSubmit(OnSubmit)}>
@@ -50,9 +52,9 @@ const ModalComponent = ({ setModal, modal }) => {
             </FormGroup>
             <FormGroup>
               <FormLabel>Telefono</FormLabel>
-              <FormControl type='text' name='tel' ref={register({
+              <FormControl type='number' name='tel' ref={register({
                 required: { value: true, message: 'campo obligtorio' },
-                pattern: { value: /^[0-9]+$/i, message: 'caractér invalido' },
+                pattern: { value: /[0-9]/, message: 'caractér invalido' },
                 maxLength: { value: 20, message: 'demasiados caracteres' },
                 minLength: { value: 8, message: 'pocos caracteres' }
               })
@@ -79,7 +81,11 @@ const ModalComponent = ({ setModal, modal }) => {
             </FormGroup>
             <FormGroup>
               <FormLabel>Comentarios</FormLabel>
-              <FormControl as='textarea' rows='{3}' name='comentario' placeholder="Comentario extra" />
+              <FormControl type='text' as='textarea' rows='{3}' name='comentario' placeholder="Comentario extra" ref={
+                register({
+                  maxLength: { value: 100, message: 'demasiados caracteres' }
+                })
+              } ></FormControl>
             </FormGroup>
           </ModalBody>
           <ModalFooter>
